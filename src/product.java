@@ -1,3 +1,4 @@
+package practice;
 
 public class product {
 	
@@ -6,6 +7,7 @@ public class product {
 	private int quantity = 0;
 	private double total = 0;
 	
+	//Constructor
 	public product(double price, String name){
 		this.price = price;
 		this.name = name;
@@ -14,6 +16,10 @@ public class product {
 	public void dropPrice(){
 		price /= 2;
 	}
+	
+	/*
+	 * Below are some getters and setters
+	 */
 	
 	public double returnPrice(){
 		return price;
@@ -33,63 +39,49 @@ public class product {
 	
 	public void showProductSpecial(){
 		String percentage = "50%";
-		System.out.printf("SPECIAL DEAL! ALMOST %s OFF EVERYTHING! \nJUST $%.02f FOR A LIMITED TIME ONLY! HURRY! \n\n", percentage, returnPrice());
+		System.out.printf("SPECIAL DEAL! ALMOST %s OFF EVERYTHING!\n%s is now for $%.02f\n\n", percentage, returnName(), returnPrice());
 	}
+	
+	/*
+	 * This method allows the user to add an item to their cart
+	 * it takes the amount entered, multiples it by the price and displays the total
+	 */
 	
 	public void addToCart(){
 		System.out.println("\nWould you like to buy this item? Enter 'Y' OR 'N'");
-		String enterCart = global.input.nextLine();
+		String enterCart = global.INPUTSTRING.nextLine();
 		
 		if(enterCart.equals("Y")){
 			System.out.print("Please enter the quantity you want (1-10): ");
-			int amountEntered = global.input.nextInt();
+			int amountEntered = global.INPUTINT.nextInt();
 			
 			quantity += amountEntered;
-			total = price *= amountEntered;
+			total = price * amountEntered;
 			total();
-			
-		} else if (enterCart.equals("N")){
-			System.out.println("Please check out the other items :)");
-		}
-	}
-	/*
-	public void userPickedItem(){
-		
-		System.out.print("Name of the product you want: ");
-		String userPicked = global.input.nextLine();
-		
-		switch (userPicked){
-		
-		case "Keyboard":
-		case "Monitor":
-		case "Mouse":
-		case "Headphone":
-		case "Speakers":
-		case "HardDrive":
-		case "Laptop":
-			showProduct();
-			dropPrice();
-			showProductSpecial();
-			addToCart();
-			break;
-			
-		default:
-			System.out.println("Please enter the correct spelling with the first letter being uppercase.");
-		}
-	}
-	
-	*/
-	
-	public void total(){
-		System.out.printf("\nCart\nQuantity: %d\nTotal: $%.02f", returnAmount(), total);
-	}
-	
-	public void lookUpProduct(){
-		
-		if(name.equals("Keyboard") || name.equals("Monitor") || name.equals("Mouse") || name.equals("Headphone") || name.equals("Speakers") || name.equals("HardDrive") || name.equals("Laptop")){
-			System.out.println("The product you entered is in store!");
+			userPurchased();
+			userRestart();
+
 		} else {
-			System.out.println("\nWe are sorry, the product you entered is not available :(\nPlease try again.");
-		}
+			userRestart();
+		} 
+	}
+	
+	// Displays the product bought
+	public void total(){
+		System.out.printf("\n\nCart\nProduct: %s\nQuantity: %d\nTotal: $%.02f", returnName(), returnAmount(), total);
+	}
+	
+	// This will ask the user if they want to buy another product before proceeding
+	public void userRestart(){
+		System.out.println("\n\nWould you like to buy another item? Enter anything to proceed.");
+		String restart = global.INPUTSTRING.nextLine();
+	}
+	
+	//Once the user buys an item they will get a thank you message and the item will be sold out.
+	public void userPurchased(){
+		System.out.println("\n\nThank you for your purchase! :)");
+		name += " -> SOLD OUT";
+		price = 0;
+		quantity = 0;
 	}
 }
