@@ -20,7 +20,6 @@ public class product {
 	/*
 	 * Below are some getters and setters
 	 */
-	
 	public double returnPrice(){
 		return price;
 	}
@@ -46,7 +45,6 @@ public class product {
 	 * This method allows the user to add an item to their cart
 	 * it takes the amount entered, multiples it by the price and displays the total
 	 */
-	
 	public void addToCart(){
 		System.out.println("\nWould you like to buy this item? Enter 'Y' OR 'N'");
 		String enterCart = global.INPUTSTRING.nextLine();
