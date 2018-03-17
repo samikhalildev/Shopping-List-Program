@@ -21,7 +21,7 @@ public class MainStore {
 		item.add(new product (39.99, "Mouse"));			//2
 		item.add(new product (74.99, "Headphone"));		//3
 		item.add(new product (47.99, "Speaker"));		//4
-		item.add(new product (120.49, "HardDrive"));	//5
+		item.add(new product (120.49, "HardDrive"));	        //5
 		item.add(new product (799.00, "Laptop"));		//6
 		
 		
@@ -36,7 +36,6 @@ public class MainStore {
 		 * The below control statements checks if the user wants to select an item by ID/index
 		 * Or by searching for a specific item.
 		 */
-		
 		if(userAnswer.equals("1")){
 			userPick();
 			
@@ -55,7 +54,6 @@ public class MainStore {
 			/* 
 			 * if the user entered yes, the "userSearch" method will get called
 			 */ 
-			
 			if (userAnswerOption2.equals("Y")){
 				userSearch();
 				
@@ -75,7 +73,6 @@ public class MainStore {
 		   /* This will loop through every item in the arraylist to display the output
 			* and their index number so that the user can select an item
 			*/
-	
 			for(int i = 0; i<item.size(); i++){
 				System.out.println();
 				System.out.println(i + ": " + item.get(i).returnName());
@@ -95,7 +92,6 @@ public class MainStore {
 			 * Then inside the body of the if statement it will pass that number to the index
 			 * item.get(userPicked) which is 4, so it will display the "Speaker" product in the list.
 			 */
-			
 			System.out.print("\n\nSelect an item by their ID: ");
 			int userPicked = global.INPUTINT.nextInt();
 				
@@ -112,7 +108,6 @@ public class MainStore {
 	 * This method will check if the product entered by the user is available
 	 * by passing the user input into another method called "lookUpProduct"
 	 */
-	
 	public static void userSearch(){
 		System.out.print("Enter a product: ");
 		String customName = global.INPUTSTRING.nextLine();
@@ -122,7 +117,6 @@ public class MainStore {
 	/*
 	 * This method checks to see if the entered product is available in the list of items.
 	 */
-	
 	public static void lookUpProduct(String name){
 
 		/*
@@ -146,26 +140,27 @@ public class MainStore {
 				(i).showProductSpecial();
 				(i).addToCart(); 
 	        }
-	    } 
 		
+		} 
 		
 		for(product j: item){
 			
-			 //If the entered product is not available in the list of items
-			if (!name.equals((j).returnName())) {
+		//If the entered product is not available in the list of items
+		if (!name.equals((j).returnName())) {
 	        	System.out.println("We are sorry, the product you entered is not available :(\n");
-				System.out.println("Would you like to see what is available? Enter anything to proceed");
+			System.out.println("Would you like to see what is available? Enter anything to proceed");
 				
-				String proceed = global.INPUTSTRING.nextLine();
+			String proceed = global.INPUTSTRING.nextLine();
 				
-				//This will list all the products available in the list and tell the user to search again
-				for(int i = 0; i<item.size(); i++){
-					System.out.print(item.get(i).returnName() + ", ");
-				}
+			//This will list all the products available in the list and tell the user to search again
+			for(int i = 0; i<item.size(); i++){
+				System.out.print(item.get(i).returnName() + ", ");
+			}
 				
-				System.out.println("\n");
-				userSearch();
+			System.out.println("\n");
+			userSearch();
 	        }
+			
 		}
 	}
 }
